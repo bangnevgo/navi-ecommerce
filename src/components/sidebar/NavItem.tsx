@@ -28,7 +28,7 @@ export function NavItem({ icon, label, active, collapsed, badge, onClick }: NavI
         font-[inherit] text-left
         ${active
           ? 'bg-gradient-to-br from-[rgba(99,102,241,0.18)] to-[rgba(99,102,241,0.08)] border-[rgba(99,102,241,0.2)] text-[#a5b4fc] shadow-[0_2px_8px_rgba(99,102,241,0.15)]'
-          : 'bg-transparent border-transparent text-[#424e62] hover:bg-[#161b28] hover:text-[#7e8a9f]'
+          : 'bg-transparent border-transparent text-[#cbd5e1] hover:bg-[#161b28] hover:text-[#e2e8f0]'
         }
       `}
     >
