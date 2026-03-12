@@ -1,4 +1,3 @@
-cat > ~/navi-ecommerce/src/components/platform/PlatformGrid.tsx << 'EOF'
 'use client';
 import Image from 'next/image';
 import { useDashboardStore } from '@/store/useDashboardStore';
@@ -47,9 +46,3 @@ export function PlatformGrid() {
     </div>
   );
 }
-EOF
-
-cd ~/navi-ecommerce
-git add .
-git commit -m "fix: use image icons in PlatformGrid"
-git push origin main
