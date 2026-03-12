@@ -1,0 +1,64 @@
+/* ── NAVI Pro Design System v3 — Obsidian Elite ── */
+/* Import in src/app/globals.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@700;800&display=swap');
+
+:root {
+  /* Backgrounds */
+  --bg:           #060810;
+  --bg-card:      #0c0f18;
+  --bg-card2:     #111520;
+  --bg-hover:     #161b28;
+  --bg-input:     #0a0d16;
+  --sidebar-bg:   #080b14;
+  --topbar-bg:    #0c0f18;
+
+  /* Borders */
+  --border:       rgba(255,255,255,0.065);
+  --border2:      rgba(255,255,255,0.115);
+  --border-focus: rgba(99,102,241,0.55);
+
+  /* Typography */
+  --text1:     #eef0f8;
+  --text2:     #7e8a9f;
+  --text3:     #424e62;
+  --text4:     #272f3e;
+
+  /* Primary — Indigo */
+  --primary:      #6366f1;
+  --primary-h:    #818cf8;
+  --primary-d:    #4f46e5;
+  --primary-bg:   rgba(99,102,241,0.1);
+  --primary-bd:   rgba(99,102,241,0.28);
+  --primary-glow: rgba(99,102,241,0.22);
+
+  /* Semantic */
+  --success:      #10d9a0;
+  --success-bg:   rgba(16,217,160,0.09);
+  --success-bd:   rgba(16,217,160,0.22);
+  --danger:       #f43f5e;
+  --danger-bg:    rgba(244,63,94,0.09);
+  --danger-bd:    rgba(244,63,94,0.22);
+  --warning:      #fbbf24;
+  --warning-bg:   rgba(251,191,36,0.09);
+  --warning-bd:   rgba(251,191,36,0.22);
+  --info:         #a78bfa;
+  --info-bg:      rgba(167,139,250,0.09);
+  --info-bd:      rgba(167,139,250,0.22);
+
+  /* Shadows */
+  --shadow-sm:  0 1px 4px rgba(0,0,0,0.5);
+  --shadow-md:  0 4px 20px rgba(0,0,0,0.6);
+  --shadow-lg:  0 16px 48px rgba(0,0,0,0.7);
+  --shadow-glow: 0 0 0 1px var(--primary-bd), 0 4px 24px var(--primary-glow);
+
+  /* Layout */
+  --sidebar-w:  252px;
+  --topbar-h:   56px;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+}
