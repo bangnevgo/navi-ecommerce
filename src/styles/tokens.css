@@ -1,50 +1,56 @@
 /* ── NAVI Pro Design System v3 — Obsidian Elite ── */
 /* Import in src/app/globals.css */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
   /* Backgrounds */
-  --bg:           #060810;
-  --bg-card:      #0c0f18;
-  --bg-card2:     #111520;
-  --bg-hover:     #161b28;
-  --bg-input:     #0a0d16;
-  --sidebar-bg:   #080b14;
-  --topbar-bg:    #0c0f18;
+  --bg:           #0d1117;
+  --bg-card:      #161b22;
+  --bg-card2:     #1c2128;
+  --bg-hover:     #21262d;
+  --bg-input:     #0d1117;
+  --sidebar-bg:   #161b22;
+  --topbar-bg:    #161b22;
 
   /* Borders */
-  --border:       rgba(255,255,255,0.065);
-  --border2:      rgba(255,255,255,0.115);
-  --border-focus: rgba(99,102,241,0.55);
+  --border:       #21262d;
+  --border2:      #30363d;
+  --border-focus: rgba(78,205,196,0.55);
 
   /* Typography */
-  --text1:     #eef0f8;
-  --text2:     #7e8a9f;
-  --text3:     #424e62;
-  --text4:     #272f3e;
+  --text1:     #e6edf3;
+  --text2:     #7d8590;
+  --text3:     #484f58;
+  --text4:     #30363d;
 
-  /* Primary — Indigo */
-  --primary:      #6366f1;
-  --primary-h:    #818cf8;
-  --primary-d:    #4f46e5;
-  --primary-bg:   rgba(99,102,241,0.1);
-  --primary-bd:   rgba(99,102,241,0.28);
-  --primary-glow: rgba(99,102,241,0.22);
+  /* Primary — Teal */
+  --primary:      #4ecdc4;
+  --primary-h:    #6eddd5;
+  --primary-d:    #3bbdb4;
+  --primary-bg:   rgba(78,205,196,0.1);
+  --primary-bd:   rgba(78,205,196,0.28);
+  --primary-glow: rgba(78,205,196,0.18);
+
+  /* Platform colors */
+  --tokopedia:  #00AA5B;
+  --shopee:     #EE4D2D;
+  --tiktok:     #69C9D0;
+  --lazada:     #F57224;
 
   /* Semantic */
-  --success:      #10d9a0;
-  --success-bg:   rgba(16,217,160,0.09);
-  --success-bd:   rgba(16,217,160,0.22);
-  --danger:       #f43f5e;
-  --danger-bg:    rgba(244,63,94,0.09);
-  --danger-bd:    rgba(244,63,94,0.22);
-  --warning:      #fbbf24;
-  --warning-bg:   rgba(251,191,36,0.09);
-  --warning-bd:   rgba(251,191,36,0.22);
-  --info:         #a78bfa;
-  --info-bg:      rgba(167,139,250,0.09);
-  --info-bd:      rgba(167,139,250,0.22);
+  --success:      #4ecdc4;
+  --success-bg:   rgba(78,205,196,0.09);
+  --success-bd:   rgba(78,205,196,0.22);
+  --danger:       #f85149;
+  --danger-bg:    rgba(248,81,73,0.09);
+  --danger-bd:    rgba(248,81,73,0.22);
+  --warning:      #e3b341;
+  --warning-bg:   rgba(227,179,65,0.09);
+  --warning-bd:   rgba(227,179,65,0.22);
+  --info:         #79c0ff;
+  --info-bg:      rgba(121,192,255,0.09);
+  --info-bd:      rgba(121,192,255,0.22);
 
   /* Shadows */
   --shadow-sm:  0 1px 4px rgba(0,0,0,0.5);
@@ -53,8 +59,8 @@
   --shadow-glow: 0 0 0 1px var(--primary-bd), 0 4px 24px var(--primary-glow);
 
   /* Layout */
-  --sidebar-w:  252px;
-  --topbar-h:   56px;
+  --sidebar-w:  240px;
+  --topbar-h:   52px;
 
   /* Radius */
   --r-sm: 6px;

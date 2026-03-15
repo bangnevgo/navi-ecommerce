@@ -2,11 +2,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDashboardStore } from '@/store/useDashboardStore';
 import { generateChartData } from '@/utils/format';
-import { PLATFORM_COLORS, revenueChartOptions } from '@/utils/chartConfig';
+
+const PLATFORMS = [
+  { label: 'Tokopedia', color: '#00AA5B' },
+  { label: 'Shopee',    color: '#EE4D2D' },
+  { label: 'TikTok',   color: '#69C9D0' },
+  { label: 'Lazada',   color: '#F57224' },
+];
 
 export function RevenueChart() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const chartRef = useRef<any>(null);
+  const chartRef  = useRef<any>(null);
   const [mounted, setMounted] = useState(false);
   const { currentPeriod, data } = useDashboardStore();
 
@@ -18,8 +24,7 @@ export function RevenueChart() {
       const Chart = ChartModule.default;
       const ctx = canvasRef.current?.getContext('2d');
       if (!ctx) return;
-
-      if (chartRef.current) { chartRef.current.destroy(); }
+      if (chartRef.current) chartRef.current.destroy();
 
       const days = data.days;
       const labels = Array.from({ length: days }, (_, i) => {
@@ -31,41 +36,93 @@ export function RevenueChart() {
       });
 
       const makeGradient = (hex: string) => {
-        const g = ctx.createLinearGradient(0, 0, 0, 280);
-        g.addColorStop(0, hex + '80');
-        g.addColorStop(1, hex + '05');
+        const g = ctx.createLinearGradient(0, 0, 0, 220);
+        g.addColorStop(0, hex + '30');
+        g.addColorStop(1, hex + '00');
         return g;
       };
 
       chartRef.current = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
           labels,
-          datasets: [
-            { label: 'Tokopedia', data: generateChartData(days), backgroundColor: makeGradient('#10d9a0'), borderColor: PLATFORM_COLORS.tokopedia.line, borderWidth: 0, borderRadius: 3, borderSkipped: false },
-            { label: 'Shopee',    data: generateChartData(days), backgroundColor: makeGradient('#f43f5e'), borderColor: PLATFORM_COLORS.shopee.line,    borderWidth: 0, borderRadius: 3, borderSkipped: false },
-            { label: 'TikTok',   data: generateChartData(days), backgroundColor: makeGradient('#6366f1'), borderColor: PLATFORM_COLORS.tiktok.line,    borderWidth: 0, borderRadius: 3, borderSkipped: false },
-            { label: 'Lazada',   data: generateChartData(days), backgroundColor: makeGradient('#fbbf24'), borderColor: PLATFORM_COLORS.lazada.line,    borderWidth: 0, borderRadius: 3, borderSkipped: false },
-          ],
+          datasets: PLATFORMS.map(p => ({
+            label: p.label,
+            data: generateChartData(days),
+            borderColor: p.color,
+            backgroundColor: makeGradient(p.color),
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 4,
+            pointHoverBackgroundColor: p.color,
+            tension: 0.4,
+            fill: true,
+          })),
         },
-        options: revenueChartOptions as any,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              align: 'end',
+              labels: {
+                color: '#7d8590',
+                font: { size: 11, family: 'Geist, system-ui' },
+                boxWidth: 12,
+                boxHeight: 2,
+                padding: 16,
+                usePointStyle: true,
+                pointStyle: 'line',
+              },
+            },
+            tooltip: {
+              backgroundColor: '#161b22',
+              borderColor: '#30363d',
+              borderWidth: 1,
+              titleColor: '#e6edf3',
+              bodyColor: '#7d8590',
+              padding: 10,
+              callbacks: {
+                label: (ctx) => ' ' + ctx.dataset.label + ': Rp ' + (ctx.raw as number / 1000000).toFixed(1) + 'jt',
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { color: '#21262d', drawTicks: false },
+              border: { display: false },
+              ticks: { color: '#484f58', font: { size: 10 }, maxRotation: 0 },
+            },
+            y: {
+              grid: { color: '#21262d', drawTicks: false },
+              border: { display: false },
+              ticks: {
+                color: '#484f58',
+                font: { size: 10 },
+                callback: (v) => 'Rp ' + (Number(v) / 1000000).toFixed(0) + 'jt',
+              },
+            },
+          },
+        },
       });
     });
-
     return () => { chartRef.current?.destroy(); };
   }, [mounted, currentPeriod, data]);
 
-  if (!mounted) return <div style={{ height: 240 }} className="animate-pulse bg-[rgba(255,255,255,0.03)] rounded-lg" />;
+  if (!mounted) return <div style={{ height: 280, background: '#161b22', borderRadius: 14 }} />;
 
   return (
-    <div className="bg-gradient-to-br from-[#0f1320] to-[#0b0e18] rounded-[14px] border border-[rgba(255,255,255,0.065)] p-5 shadow-[0_2px_12px_rgba(0,0,0,0.4)]">
-      <div className="flex items-center justify-between mb-4">
+    <div style={{ background: '#161b22', border: '1px solid #21262d', borderRadius: 14, padding: 20 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
         <div>
-          <h3 className="text-[13px] font-bold text-[#eef0f8]">Revenue per Platform</h3>
-          <p className="text-[11px] text-[#424e62] mt-0.5">{currentPeriod} terakhir · 4 platform</p>
+          <div style={{ fontSize: 13, fontWeight: 600, color: '#e6edf3' }}>Revenue per Platform</div>
+          <div style={{ fontSize: 11, color: '#484f58', marginTop: 2 }}>{currentPeriod} terakhir · 4 platform</div>
         </div>
       </div>
-      <div style={{ height: 240 }}>
+      <div style={{ height: 220 }}>
         <canvas ref={canvasRef} />
       </div>
     </div>
