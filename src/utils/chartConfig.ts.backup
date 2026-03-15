@@ -61,7 +61,7 @@ export const revenueChartOptions: ChartOptions<'bar'> = {
     tooltip: {
       ...defaultTooltip,
       callbacks: {
-        label: (ctx) => ` ${ctx.dataset.label}: Rp ${ctx.parsed.y?.toFixed(1) ?? '0'} jt`,
+        label: (ctx) => ` ${ctx.dataset.label}: Rp ${ctx.parsed.y.toFixed(1)} jt`,
       },
     },
   },
