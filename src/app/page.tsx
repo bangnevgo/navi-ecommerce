@@ -1,8 +1,8 @@
 'use client';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
-import DashboardPage from '@/pages/Dashboard';
-import { PlatformPage } from '@/pages/PlatformPage';
-import InventoryPage from '@/pages/InventoryPage';
+import DashboardPage from '@/views/Dashboard';
+import { PlatformPage } from '@/views/PlatformPage';
+import InventoryPage from '@/views/InventoryPage';
 import { useUIStore } from '@/store/useUIStore';
 import { ProductsTable } from '@/components/table/ProductsTable';
 import { AgentGrid } from '@/components/ai/AIInsightPanel';

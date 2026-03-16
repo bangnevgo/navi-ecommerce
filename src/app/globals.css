@@ -2,48 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'tw-animate-css';
 @import '../styles/tokens.css';
 @import '../styles/animations.css';
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import '@fontsource-variable/geist';
+
+@layer base {
+  :root {
+    --background:          216 28% 7%;
+    --foreground:          213 25% 88%;
+    --card:                216 28% 8%;
+    --card-foreground:     213 25% 88%;
+    --popover:             216 28% 8%;
+    --popover-foreground:  213 25% 88%;
+    --primary:             239 84% 72%;
+    --primary-foreground:  216 28% 7%;
+    --secondary:           215 17% 14%;
+    --secondary-foreground:213 25% 88%;
+    --muted:               215 17% 11%;
+    --muted-foreground:    215 14% 40%;
+    --accent:              215 17% 14%;
+    --accent-foreground:   213 25% 88%;
+    --destructive:         0 72% 58%;
+    --destructive-foreground: 213 25% 88%;
+    --border:              215 17% 14%;
+    --input:               215 17% 14%;
+    --ring:                239 84% 67%;
+    --radius:              0.5rem;
+  }
+}
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html, body {
   height: 100%;
-  background: var(--bg);
-  color: var(--text1);
-  font-family: 'Geist', system-ui, sans-serif;
+  background: #0d1117;
+  color: #c9d1d9;
+  font-family: 'Geist Variable', system-ui, sans-serif;
   font-size: 13px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
-/* Scrollbars */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.07); border-radius: 8px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.14); }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.12); }
 
-/* Focus ring */
-*:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
-}
+/* Selection */
+::selection { background: rgba(99,102,241,0.25); color: #e6edf3; }
 
-/* Font utilities */
-.font-mono  { font-family: 'JetBrains Mono', monospace; }
-.font-sora  { font-family: 'Sora', sans-serif; }
-.font-body  { font-family: 'Geist', system-ui, sans-serif; }
+/* Focus visible */
+:focus-visible { outline: 2px solid rgba(99,102,241,0.5); outline-offset: 2px; border-radius: 4px; }
 
-@layer base {
-  :root { --background: oklch(1 0 0); --foreground: oklch(0.145 0 0); --card: oklch(1 0 0); --card-foreground: oklch(0.145 0 0); --popover: oklch(1 0 0); --popover-foreground: oklch(0.145 0 0); --primary: oklch(0.205 0 0); --primary-foreground: oklch(0.985 0 0); --secondary: oklch(0.97 0 0); --secondary-foreground: oklch(0.205 0 0); --muted: oklch(0.97 0 0); --muted-foreground: oklch(0.556 0 0); --accent: oklch(0.97 0 0); --accent-foreground: oklch(0.205 0 0); --destructive: oklch(0.577 0.245 27.325); --border: oklch(0.922 0 0); --input: oklch(0.922 0 0); --ring: oklch(0.708 0 0); --chart-1: oklch(0.809 0.105 251.813); --chart-2: oklch(0.623 0.214 259.815); --chart-3: oklch(0.546 0.245 262.881); --chart-4: oklch(0.488 0.243 264.376); --chart-5: oklch(0.424 0.199 265.638); --radius: 0.625rem; --sidebar: oklch(0.985 0 0); --sidebar-foreground: oklch(0.145 0 0); --sidebar-primary: oklch(0.205 0 0); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.97 0 0); --sidebar-accent-foreground: oklch(0.205 0 0); --sidebar-border: oklch(0.922 0 0); --sidebar-ring: oklch(0.708 0 0); }
-  .dark { --background: oklch(0.145 0 0); --foreground: oklch(0.985 0 0); --card: oklch(0.205 0 0); --card-foreground: oklch(0.985 0 0); --popover: oklch(0.205 0 0); --popover-foreground: oklch(0.985 0 0); --primary: oklch(0.922 0 0); --primary-foreground: oklch(0.205 0 0); --secondary: oklch(0.269 0 0); --secondary-foreground: oklch(0.985 0 0); --muted: oklch(0.269 0 0); --muted-foreground: oklch(0.708 0 0); --accent: oklch(0.269 0 0); --accent-foreground: oklch(0.985 0 0); --destructive: oklch(0.704 0.191 22.216); --border: oklch(1 0 0 / 10%); --input: oklch(1 0 0 / 15%); --ring: oklch(0.556 0 0); --chart-1: oklch(0.809 0.105 251.813); --chart-2: oklch(0.623 0.214 259.815); --chart-3: oklch(0.546 0.245 262.881); --chart-4: oklch(0.488 0.243 264.376); --chart-5: oklch(0.424 0.199 265.638); --sidebar: oklch(0.205 0 0); --sidebar-foreground: oklch(0.985 0 0); --sidebar-primary: oklch(0.488 0.243 264.376); --sidebar-primary-foreground: oklch(0.985 0 0); --sidebar-accent: oklch(0.269 0 0); --sidebar-accent-foreground: oklch(0.985 0 0); --sidebar-border: oklch(1 0 0 / 10%); --sidebar-ring: oklch(0.556 0 0); }
-  .theme { --font-sans: var(--font-sans); }
-  * {
-    @apply border-border outline-ring/50; }
-  body {
-    @apply bg-background text-foreground; }
-  html {
-    @apply font-sans; } }
+/* Tremor dark mode overrides */
+.tremor-Card-root { background: #0d1117 !important; border-color: rgba(255,255,255,0.07) !important; }

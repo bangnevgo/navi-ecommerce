@@ -14,7 +14,7 @@
  *   Atau fetch dari database berdasarkan slug
  */
 
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -154,12 +154,13 @@ function MiniSparkline({ color }: { color: string }) {
 // ─── Main Demo Page ────────────────────────────────────────────────────────────
 
 export default function DemoPage({
-  params,
-  searchParams,
+  params: _params,
+  searchParams: searchParamsPromise,
 }: {
-  params: { slug: string };
-  searchParams: { shop?: string; niche?: string; gmv?: string; orders?: string; name?: string };
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ shop?: string; niche?: string; gmv?: string; orders?: string; name?: string }>;
 }) {
+  const searchParams = React.use(searchParamsPromise);
   const config: DemoConfig = {
     shopName: searchParams.shop || 'Toko Kamu',
     niche: (searchParams.niche as DemoConfig['niche']) || 'general',

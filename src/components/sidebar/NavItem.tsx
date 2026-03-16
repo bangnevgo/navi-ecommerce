@@ -2,59 +2,76 @@
 'use client';
 
 import React from 'react';
+import * as Tooltip from '@radix-ui/react-tooltip';
 
 interface NavItemProps {
   icon: React.ReactNode;
   label: string;
   active?: boolean;
   collapsed?: boolean;
-  badge?: { text: string; color: 'red' | 'blue' } | null | undefined;
+  badge?: { text: string; color: 'red' | 'blue' } | null;
   onClick?: () => void;
 }
 
-const badgeColors = {
-  red:  'bg-[rgba(244,63,94,0.09)]  text-[#f43f5e]',
-  blue: 'bg-[rgba(99,102,241,0.1)]  text-[#818cf8]',
-};
-
 export function NavItem({ icon, label, active, collapsed, badge, onClick }: NavItemProps) {
-  return (
+  const button = (
     <button
       onClick={onClick}
-      title={collapsed ? label : undefined}
       className={`
-        relative w-full h-[34px] rounded-[8px] flex items-center gap-[9px] px-2
-        mb-[1px] cursor-pointer border transition-all duration-150 active:scale-[0.98]
-        font-[inherit] text-left
+        relative w-full h-[32px] rounded-[7px] flex items-center gap-[8px]
+        ${collapsed ? 'justify-center px-0' : 'px-2.5'}
+        mb-px cursor-pointer transition-all duration-100 active:scale-[0.98]
+        font-[inherit] text-left border
         ${active
-          ? 'bg-gradient-to-br from-[rgba(99,102,241,0.18)] to-[rgba(99,102,241,0.08)] border-[rgba(99,102,241,0.2)] text-[#a5b4fc] shadow-[0_2px_8px_rgba(99,102,241,0.15)]'
-          : 'bg-transparent border-transparent text-[#cbd5e1] hover:bg-[#161b28] hover:text-[#e2e8f0]'
+          ? 'bg-[rgba(255,255,255,0.06)] border-[rgba(255,255,255,0.08)] text-[#e6edf3]'
+          : 'bg-transparent border-transparent text-[#7d8590] hover:bg-[rgba(255,255,255,0.04)] hover:text-[#c9d1d9]'
         }
       `}
     >
-      {/* Active indicator */}
-      {active && (
-        <span className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-[18px] rounded-r-[3px] bg-gradient-to-b from-[#818cf8] to-[#6366f1]" />
-      )}
-
-      {/* Icon */}
-      <span className={`flex-shrink-0 ${active ? 'opacity-100' : 'opacity-80'}`}>
+      <span className={`flex-shrink-0 ${active ? 'text-[#e6edf3]' : 'text-[#484f58]'}`}>
         {icon}
       </span>
 
-      {/* Label */}
       {!collapsed && (
-        <span className={`text-[12px] whitespace-nowrap tracking-0 ${active ? 'font-[700]' : 'font-[500]'}`}>
+        <span className={`text-[12.5px] whitespace-nowrap leading-none ${active ? 'font-[600] text-[#e6edf3]' : 'font-[450]'}`}>
           {label}
         </span>
       )}
 
-      {/* Badge */}
       {!collapsed && badge && (
-        <span className={`ml-auto px-[5px] py-[1px] rounded-[4px] text-[10px] font-[700] ${badgeColors[badge.color]}`}>
+        <span className={`ml-auto min-w-[18px] h-[16px] px-1 rounded-[4px] text-[10px] font-[700] flex items-center justify-center leading-none tabular-nums
+          ${badge.color === 'red'
+            ? 'bg-[rgba(248,81,73,0.12)] text-[#f85149]'
+            : 'bg-[rgba(121,192,255,0.1)] text-[#79c0ff]'
+          }`}>
           {badge.text}
         </span>
       )}
     </button>
+  );
+
+  if (!collapsed) return button;
+
+  return (
+    <Tooltip.Provider delayDuration={300}>
+      <Tooltip.Root>
+        <Tooltip.Trigger asChild>{button}</Tooltip.Trigger>
+        <Tooltip.Portal>
+          <Tooltip.Content
+            side="right"
+            sideOffset={8}
+            className="z-[100] px-2.5 py-1.5 rounded-[7px] text-[11.5px] font-[500] text-[#c9d1d9] bg-[#161b22] border border-[rgba(255,255,255,0.1)] shadow-[0_4px_16px_rgba(0,0,0,0.5)] select-none animate-fadeIn"
+          >
+            {label}
+            {badge && (
+              <span className={`ml-1.5 text-[10px] font-bold ${badge.color === 'red' ? 'text-[#f85149]' : 'text-[#79c0ff]'}`}>
+                {badge.text}
+              </span>
+            )}
+            <Tooltip.Arrow className="fill-[#161b22]" />
+          </Tooltip.Content>
+        </Tooltip.Portal>
+      </Tooltip.Root>
+    </Tooltip.Provider>
   );
 }

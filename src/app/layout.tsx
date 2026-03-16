@@ -1,9 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+import '@fontsource-variable/geist';
 
 export const metadata: Metadata = {
   title: 'NAVI Pro — E-Commerce Analytics',
@@ -12,14 +9,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={cn("font-sans", geist.variable)}>
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@700;800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>{children}</body>
+    <html lang="id">
+      <body style={{ fontFamily: "'Geist Variable', system-ui, sans-serif" }}>
+        {children}
+      </body>
     </html>
   );
 }
